@@ -7,7 +7,7 @@ with following info to access H2 in memory DB
 
 ![img.png](img.png)
 
-The DB is created and fill at each start based on files CDR_DDL.sql and CDR_DML.sql in resources folder
+The DB is created and fill at each start based on files **CDR_DDL.sql** and **CDR_DML.sql** in resources folder
 
 ## SWAGGER-UI
 
