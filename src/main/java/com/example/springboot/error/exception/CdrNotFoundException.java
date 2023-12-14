@@ -1,4 +1,4 @@
-package com.example.springboot.exception;
+package com.example.springboot.error.exception;
 
 import lombok.Getter;
 

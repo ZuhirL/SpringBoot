@@ -1,5 +1,7 @@
-package com.example.springboot.exception;
+package com.example.springboot.error;
 
+import com.example.springboot.error.exception.CdrNotFoundException;
+import com.example.springboot.error.exception.TimeOverlapException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.springboot.exception.ErrorCode.*;
+import static com.example.springboot.error.ErrorCode.*;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {

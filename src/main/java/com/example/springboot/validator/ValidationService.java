@@ -3,7 +3,7 @@ package com.example.springboot.validator;
 import com.example.springboot.dao.CdrEntity;
 import com.example.springboot.dao.CdrRepository;
 import com.example.springboot.dto.CdrDto;
-import com.example.springboot.exception.TimeOverlapException;
+import com.example.springboot.error.exception.TimeOverlapException;
 import com.example.springboot.mapper.CdrMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

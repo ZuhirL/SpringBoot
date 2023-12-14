@@ -1,4 +1,4 @@
-package com.example.springboot.exception;
+package com.example.springboot.error;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

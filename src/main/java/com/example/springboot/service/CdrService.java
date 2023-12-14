@@ -3,7 +3,7 @@ package com.example.springboot.service;
 import com.example.springboot.dao.CdrEntity;
 import com.example.springboot.dao.CdrRepository;
 import com.example.springboot.dto.CdrDto;
-import com.example.springboot.exception.CdrNotFoundException;
+import com.example.springboot.error.exception.CdrNotFoundException;
 import com.example.springboot.mapper.CdrMapper;
 import com.example.springboot.validator.ValidationService;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
