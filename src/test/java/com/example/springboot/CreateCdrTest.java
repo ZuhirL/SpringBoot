@@ -45,7 +45,7 @@ class CreateCdrTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"sessionIdentification\":\"1213\",\"vehicleIdentification\":\"VH001\",\"startAt\":\"2023-05-18T15:10:00Z\",\"endAt\":\"2024-05-19T15:10:01Z\",\"amount\":1.2}"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("{\"errorCode\":\"CDR-002\",\"errorDescription\":\"Invalid request body\",\"errorDetails\":[\"Start time can't be before last end time\"]}"));
+                .andExpect(content().json("{\"errorCode\":\"CDR-002\",\"errorDescription\":\"Invalid request body\",\"errorDetails\":[\"Start time can't be before last end time\"]}"));
     }
 
 }
