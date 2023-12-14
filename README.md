@@ -24,7 +24,6 @@ In order to achieve that goal, a CDR contract and a set of endpoints are require
 
     • The "End time" cannot be smaller than "Start time"
 
-
     • The "Start time" of an upcoming Charge Detail Record for a particular vehicle
         must always be bigger than the "End time" of any previous Charge Detail Records.
 
