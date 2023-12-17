@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Ensure execute permissions for mvnw
+        run: chmod +x mvnw
       - name: Test
         run: |
           ./mvnw test
