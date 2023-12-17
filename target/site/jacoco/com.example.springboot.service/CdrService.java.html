@@ -34,9 +34,9 @@ public class CdrService {
     }
 
     public CdrDto getById(Long id) {
-<span class="fc" id="L37">        return cdrRepository.findById(id)</span>
-<span class="fc" id="L38">                .map(e -&gt; cdrMapper.toCdrDto(e))</span>
-<span class="fc" id="L39">                .orElseThrow(CdrNotFoundException::new);</span>
+<span class="pc" id="L37">        return cdrRepository.findById(id)</span>
+<span class="pc" id="L38">                .map(e -&gt; cdrMapper.toCdrDto(e))</span>
+<span class="nc" id="L39">                .orElseThrow(CdrNotFoundException::new);</span>
     }
 
     public List&lt;CdrDto&gt; getByVehicleId(String vehicleId, String sortBy, String order) {
