@@ -40,19 +40,19 @@ public class CdrService {
     }
 
     public List&lt;CdrDto&gt; getByVehicleId(String vehicleId, String sortBy, String order) {
-<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (ORDER_TIME_MAP.containsKey(sortBy)) {</span>
-<span class="fc bfc" id="L44" title="All 2 branches covered.">            if (DESC_ORDER.equals(order)) {</span>
-<span class="fc" id="L45">                return cdrRepository.findByVehicleId(vehicleId, Sort.by(ORDER_TIME_MAP.get(sortBy)).descending()).stream()</span>
-<span class="fc" id="L46">                        .map(cdrMapper::toCdrDto)</span>
-<span class="fc" id="L47">                        .toList();</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (ORDER_TIME_MAP.containsKey(sortBy)) {</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (DESC_ORDER.equals(order)) {</span>
+<span class="nc" id="L45">                return cdrRepository.findByVehicleId(vehicleId, Sort.by(ORDER_TIME_MAP.get(sortBy)).descending()).stream()</span>
+<span class="nc" id="L46">                        .map(cdrMapper::toCdrDto)</span>
+<span class="nc" id="L47">                        .toList();</span>
             }
-<span class="fc" id="L49">            return cdrRepository.findByVehicleId(vehicleId, Sort.by(ORDER_TIME_MAP.get(sortBy))).stream()</span>
-<span class="fc" id="L50">                    .map(cdrMapper::toCdrDto)</span>
-<span class="fc" id="L51">                    .toList();</span>
+<span class="nc" id="L49">            return cdrRepository.findByVehicleId(vehicleId, Sort.by(ORDER_TIME_MAP.get(sortBy))).stream()</span>
+<span class="nc" id="L50">                    .map(cdrMapper::toCdrDto)</span>
+<span class="nc" id="L51">                    .toList();</span>
         } else {
-<span class="fc" id="L53">            return cdrRepository.findByVehicleId(vehicleId).stream()</span>
-<span class="fc" id="L54">                    .map(cdrMapper::toCdrDto)</span>
-<span class="fc" id="L55">                    .toList();</span>
+<span class="nc" id="L53">            return cdrRepository.findByVehicleId(vehicleId).stream()</span>
+<span class="nc" id="L54">                    .map(cdrMapper::toCdrDto)</span>
+<span class="nc" id="L55">                    .toList();</span>
         }
     }
 
