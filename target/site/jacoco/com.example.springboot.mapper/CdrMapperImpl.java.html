@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CdrMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot</a> &gt; <a href="index.source.html" class="el_package">com.example.springboot.mapper</a> &gt; <span class="el_source">CdrMapperImpl.java</span></div><h1>CdrMapperImpl.java</h1><pre class="source lang-java linenums">package com.example.springboot.mapper;
+
+import com.example.springboot.dao.CdrEntity;
+import com.example.springboot.dto.CdrDto;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2023-12-17T20:11:20+0100&quot;,
+    comments = &quot;version: 1.5.5.Final, compiler: javac, environment: Java 17.0.7 (Oracle Corporation)&quot;
+)
+@Component
+<span class="fc" id="L14">public class CdrMapperImpl implements CdrMapper {</span>
+
+    @Override
+    public CdrDto toCdrDto(CdrEntity cdrEntity) {
+<span class="pc bpc" id="L18" title="1 of 2 branches missed.">        if ( cdrEntity == null ) {</span>
+<span class="nc" id="L19">            return null;</span>
+        }
+
+<span class="fc" id="L22">        CdrDto cdrDto = new CdrDto();</span>
+
+<span class="fc" id="L24">        cdrDto.setSessionIdentification( cdrEntity.getSessionId() );</span>
+<span class="fc" id="L25">        cdrDto.setVehicleIdentification( cdrEntity.getVehicleId() );</span>
+<span class="fc" id="L26">        cdrDto.setStartAt( cdrEntity.getStartTime() );</span>
+<span class="fc" id="L27">        cdrDto.setEndAt( cdrEntity.getEndTime() );</span>
+<span class="fc" id="L28">        cdrDto.setAmount( cdrEntity.getTotalCost() );</span>
+<span class="fc" id="L29">        cdrDto.setId( cdrEntity.getId() );</span>
+
+<span class="fc" id="L31">        return cdrDto;</span>
+    }
+
+    @Override
+    public CdrEntity toCdrEntity(CdrDto cdrDto) {
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">        if ( cdrDto == null ) {</span>
+<span class="nc" id="L37">            return null;</span>
+        }
+
+<span class="fc" id="L40">        CdrEntity cdrEntity = new CdrEntity();</span>
+
+<span class="fc" id="L42">        cdrEntity.setSessionId( cdrDto.getSessionIdentification() );</span>
+<span class="fc" id="L43">        cdrEntity.setVehicleId( cdrDto.getVehicleIdentification() );</span>
+<span class="fc" id="L44">        cdrEntity.setStartTime( cdrDto.getStartAt() );</span>
+<span class="fc" id="L45">        cdrEntity.setEndTime( cdrDto.getEndAt() );</span>
+<span class="fc" id="L46">        cdrEntity.setTotalCost( cdrDto.getAmount() );</span>
+<span class="fc" id="L47">        cdrEntity.setId( cdrDto.getId() );</span>
+
+<span class="fc" id="L49">        return cdrEntity;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

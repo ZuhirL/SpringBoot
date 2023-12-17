@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CdrController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot</a> &gt; <a href="index.source.html" class="el_package">com.example.springboot.controller</a> &gt; <span class="el_source">CdrController.java</span></div><h1>CdrController.java</h1><pre class="source lang-java linenums">package com.example.springboot.controller;
+
+import com.example.springboot.dto.CdrDto;
+import com.example.springboot.service.CdrService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;cdr&quot;)
+<span class="fc" id="L13">@RequiredArgsConstructor</span>
+public class CdrController {
+
+    private final CdrService cdrService;
+
+    @PostMapping
+    public CdrDto createCdr(@Valid @RequestBody CdrDto cdrDto) {
+<span class="fc" id="L20">        return cdrService.createCdr(cdrDto);</span>
+    }
+
+    @GetMapping(&quot;id/{id}&quot;)
+    public CdrDto getById(@PathVariable Long id) {
+<span class="fc" id="L25">        return cdrService.getById(id);</span>
+    }
+
+    @GetMapping(&quot;vehicle-identification/{vehicleId}&quot;)
+    public List&lt;CdrDto&gt; getByVehicleIdentification(@PathVariable String vehicleId,
+                                                   @RequestParam(required = false) String sortBy,
+                                                   @RequestParam(required = false) String order) {
+<span class="fc" id="L32">        return cdrService.getByVehicleId(vehicleId, sortBy, order);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
