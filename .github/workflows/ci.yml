@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  ci:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,9 +17,17 @@ jobs:
           java-version: '17'
       - name: Ensure execute permissions for mvnw
         run: chmod +x mvnw
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Test
         run: |
           ./mvnw test
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
       - name: Deploy
         if: github.ref == 'refs/heads/main'
         env:
