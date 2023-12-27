@@ -90,6 +90,10 @@
 
 	</dependencies>
 
+	<scm>
+		<developerConnection>scm:git:https://github.com/ZuhirL/SpringBoot</developerConnection>
+	</scm>
+
 	<build>
 		<plugins>
 			<plugin>
