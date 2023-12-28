@@ -2,7 +2,7 @@ package com.example.springboot.dao;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 
@@ -12,7 +12,8 @@ import java.time.Instant;
 public class CdrEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CDR_SEQ")
+    @SequenceGenerator(name = "CDR_SEQ", allocationSize = 1)
     private Long id;
 
     @Column(name = "session_id")

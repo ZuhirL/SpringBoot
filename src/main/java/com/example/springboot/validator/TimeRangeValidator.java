@@ -2,8 +2,8 @@ package com.example.springboot.validator;
 
 import com.example.springboot.dto.CdrDto;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class TimeRangeValidator implements ConstraintValidator<TimeRangeValidation, CdrDto> {
 
