@@ -1,6 +1,7 @@
 package com.example.springboot.dto;
 
 import com.example.springboot.validator.TimeRangeValidation;
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -12,6 +13,7 @@ import lombok.Data;
 @TimeRangeValidation(message = "StartAt can't be after endAt")
 public class CdrDto {
 
+  @Hidden
   private Long id;
 
   @NotBlank(message = "sessionIdentification is mandatory")
