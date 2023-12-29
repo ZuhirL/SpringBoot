@@ -11,9 +11,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = TimeRangeValidator.class)
 public @interface TimeRangeValidation {
-    String message() default "{com.example.springboot.dto.CdrDto}";
 
-    Class<?>[] groups() default {};
+  String message() default "{com.example.springboot.dto.CdrDto}";
 
-    Class<? extends Payload>[] payload() default {};
+  Class<?>[] groups() default {};
+
+  Class<? extends Payload>[] payload() default {};
 }

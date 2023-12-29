@@ -9,12 +9,12 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorResponse {
 
-    private String errorCode;
-    private String errorDescription;
-    private String[] errorDetails;
+  private String errorCode;
+  private String errorDescription;
+  private String[] errorDetails;
 
-    public ErrorResponse(String errorCode, String errorDescription) {
-        this.errorCode = errorCode;
-        this.errorDescription = errorDescription;
-    }
+  public ErrorResponse(String errorCode, String errorDescription) {
+    this.errorCode = errorCode;
+    this.errorDescription = errorDescription;
+  }
 }
