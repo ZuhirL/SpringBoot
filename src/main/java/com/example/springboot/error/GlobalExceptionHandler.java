@@ -21,7 +21,10 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public ErrorResponse handleException(Exception ex) {
-        return new ErrorResponse(GENERIC_ERROR.getErrorCode(), GENERIC_ERROR.getErrorDescription());
+        List<String> errors = new ArrayList<>();
+        errors.add(ex.getMessage());
+        return new ErrorResponse(GENERIC_ERROR.getErrorCode(),
+                GENERIC_ERROR.getErrorDescription(), errors.toArray(new String[0]));
     }
 
     @ResponseBody

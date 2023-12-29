@@ -1,6 +1,5 @@
 package com.example.springboot.service;
 
-import com.example.springboot.dao.CdrEntity;
 import com.example.springboot.dao.CdrRepository;
 import com.example.springboot.dto.CdrDto;
 import com.example.springboot.error.exception.CdrNotFoundException;
@@ -29,8 +28,8 @@ public class CdrService {
 
     public CdrDto createCdr(CdrDto cdrDto) {
         validationService.isTimeOverlapValid(cdrDto);
-        CdrEntity cdrEntity = cdrRepository.save(cdrMapper.toCdrEntity(cdrDto));
-        return cdrMapper.toCdrDto(cdrEntity);
+        cdrRepository.save(cdrMapper.toCdrEntity(cdrDto));
+        return cdrDto;
     }
 
     public CdrDto getById(Long id) {
