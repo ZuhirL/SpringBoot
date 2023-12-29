@@ -17,10 +17,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CdrService {
 
-  public final static Map<String, String> ORDER_TIME_MAP = new HashMap<>(
+  protected static final Map<String, String> ORDER_TIME_MAP = new HashMap<>(
       Map.of("startAt", "startTime", "endAt", "endTime")
   );
-  public final static String DESC_ORDER = "desc";
+  public static final String DESC_ORDER = "desc";
 
   private final CdrRepository cdrRepository;
   private final CdrMapper cdrMapper;
@@ -35,7 +35,7 @@ public class CdrService {
 
   public CdrDto getById(Long id) {
     return cdrRepository.findById(id)
-        .map(e -> cdrMapper.toCdrDto(e))
+        .map(cdrMapper::toCdrDto)
         .orElseThrow(CdrNotFoundException::new);
   }
 

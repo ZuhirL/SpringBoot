@@ -1,8 +1,8 @@
 package com.example.springboot.error;
 
-import static com.example.springboot.error.ErrorCode.CDR_NOT_FOUND;
-import static com.example.springboot.error.ErrorCode.GENERIC_ERROR;
-import static com.example.springboot.error.ErrorCode.INVALID_REQUEST_BODY;
+import static com.example.springboot.error.ErrorCodeEnum.CDR_NOT_FOUND;
+import static com.example.springboot.error.ErrorCodeEnum.GENERIC_ERROR;
+import static com.example.springboot.error.ErrorCodeEnum.INVALID_REQUEST_BODY;
 
 import com.example.springboot.error.exception.CdrNotFoundException;
 import com.example.springboot.error.exception.TimeOverlapException;
@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ErrorResponse handleValidationException(MethodArgumentNotValidException ex) {
     List<String> errors = new ArrayList<>();
-    ex.getBindingResult().getAllErrors().forEach((error) -> {
+    ex.getBindingResult().getAllErrors().forEach(error -> {
       String errorMessage = error.getDefaultMessage();
       errors.add(errorMessage);
     });
@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(TimeOverlapException.class)
   public ErrorResponse handleTimeOverlapException(TimeOverlapException ex) {
     List<String> errors = new ArrayList<>();
-    errors.add(ex.getDescription());
+    errors.add(ex.getMessage());
     return new ErrorResponse(INVALID_REQUEST_BODY.getErrorCode(),
         INVALID_REQUEST_BODY.getErrorDescription(), errors.toArray(new String[0]));
   }

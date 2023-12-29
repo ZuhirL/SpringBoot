@@ -5,6 +5,6 @@ import lombok.Getter;
 @Getter
 public class CdrNotFoundException extends RuntimeException {
 
-  private final String description = "Cdr not found";
+  private static final String CDR_NOT_FOUND_DESCRIPTION = "Cdr not found";
 
 }

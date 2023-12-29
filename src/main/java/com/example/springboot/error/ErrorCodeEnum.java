@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum ErrorCode {
+public enum ErrorCodeEnum {
 
   GENERIC_ERROR("CDR-001", "Generic error"),
   INVALID_REQUEST_BODY("CDR-002", "Invalid request body"),
