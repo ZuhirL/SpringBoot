@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: java-app
+    dockerfilePath: ./Dockerfile
+    env: docker
+    plan: starter
+    httpPort: 8080
+
+  - type: web
+    name: prometheus
+    dockerfilePath: ./Dockerfile
+    env: docker
+    plan: starter
+    httpPort: 9090
+    envVars:
+      - key: PROMETHEUS_CONFIG_FILE
+        value: /etc/prometheus/prometheus.yml
+
+  - type: web
+    name: grafana
+    dockerfilePath: ./Dockerfile
+    env: docker
+    plan: starter
+    httpPort: 3000
+    envVars:
+      - key: GF_PATHS_PROVISIONING
+        value: /etc/grafana/provisioning
