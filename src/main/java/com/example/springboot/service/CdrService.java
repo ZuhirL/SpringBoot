@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CdrService {
 
-  protected static final Map<String, String> ORDER_TIME_MAP = new HashMap<>(
+  public static final Map<String, String> ORDER_TIME_MAP = new HashMap<>(
       Map.of("startAt", "startTime", "endAt", "endTime")
   );
   public static final String DESC_ORDER = "desc";

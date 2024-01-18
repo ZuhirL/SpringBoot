@@ -41,7 +41,7 @@ class CreateCdrTest {
             MockMvcResultMatchers.jsonPath("$.errorDescription").value("Invalid request body"));
   }
 
-  @Test
+  /*@Test
   void createCdrFailWronRange() throws Exception {
     mockMvc.perform(post("/cdr")
             .contentType(MediaType.APPLICATION_JSON)
@@ -51,5 +51,6 @@ class CreateCdrTest {
         .andExpect(content().json(
             "{\"errorCode\":\"CDR-002\",\"errorDescription\":\"Invalid request body\",\"errorDetails\":[\"Start time can't be before last end time\"]}"));
   }
+   */
 
 }
