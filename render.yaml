@@ -2,7 +2,7 @@ services:
   - type: web
     name: java-app
     env: docker
-    buildCommand: 'docker build -t java-app .'
+    dockerfilePath: ./Dockerfile
     healthCheckPath: '/'
     envVars:
       - key: PORT
@@ -11,7 +11,7 @@ services:
   - type: web
     name: prometheus
     env: docker
-    dockerImage: 'prom/prometheus:v2.44.0'
+    image: 'prom/prometheus:v2.44.0'
     healthCheckPath: '/'
     envVars:
       - key: PORT
@@ -20,7 +20,7 @@ services:
   - type: web
     name: grafana
     env: docker
-    dockerImage: 'grafana/grafana:9.5.2'
+    image: 'grafana/grafana:9.5.2'
     healthCheckPath: '/'
     envVars:
       - key: PORT
