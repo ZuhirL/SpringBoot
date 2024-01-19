@@ -1,37 +1,27 @@
 services:
   - type: web
     name: java-app
-    env: docker
     dockerfilePath: ./Dockerfile
-    healthCheckPath: /
-    envVars:
-      - key: PORT
-        value: '8080'
-    port: 8080
+    env: docker
+    plan: starter
+    httpPort: 8080
 
   - type: web
     name: prometheus
+    dockerfilePath: ./Dockerfile
     env: docker
-    image: prom/prometheus:v2.44.0
-    port: 10000
+    plan: starter
+    httpPort: 9090
     envVars:
-      - key: PORT
-        value: '10000'
-    disk:
-      name: prometheus-data
-      mountPath: /etc/prometheus
-      sizeGB: 10 # Adjust the size as necessary
+      - key: PROMETHEUS_CONFIG_FILE
+        value: /etc/prometheus/prometheus.yml
 
   - type: web
     name: grafana
+    dockerfilePath: ./Dockerfile
     env: docker
-    image: grafana/grafana:9.5.2
-    restartPolicy: always
-    port: 3000
+    plan: starter
+    httpPort: 3000
     envVars:
-      - key: PORT
-        value: '3000'
-    disk:
-      name: grafana-data
-      mountPath: /etc/grafana
-      sizeGB: 10 # Adjust the size as necessary
+      - key: GF_PATHS_PROVISIONING
+        value: /etc/grafana/provisioning
