@@ -13,8 +13,8 @@ services:
   - type: web
     name: prometheus
     env: docker
-    dockerfile:
-      image: docker.io/prom/prometheus:v2.44.0
+    image:
+      url: docker.io/prom/prometheus:v2.44.0
     healthCheckPath: /
     envVars:
       - key: PORT
@@ -28,8 +28,8 @@ services:
   - type: web
     name: grafana
     env: docker
-    dockerfile:
-      image: docker.io/grafana/grafana:9.5.2
+    image:
+      url: docker.io/grafana/grafana:9.5.2
     healthCheckPath: /
     envVars:
       - key: PORT
