@@ -22,7 +22,6 @@ services:
     disk:
       name: prometheus-data
       mountPath: /etc/prometheus
-      sizeGB: 1
 
   # Grafana Service
   - type: web
@@ -37,4 +36,3 @@ services:
     disk:
       name: grafana-data
       mountPath: /etc/grafana
-      sizeGB: 1
