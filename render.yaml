@@ -19,9 +19,6 @@ services:
     envVars:
       - key: PORT
         value: 10000
-    disk:
-      name: prometheus-data
-      mountPath: /etc/prometheus
 
   # Grafana Service
   - type: web
@@ -33,6 +30,3 @@ services:
     envVars:
       - key: PORT
         value: 3000
-    disk:
-      name: grafana-data
-      mountPath: /etc/grafana
