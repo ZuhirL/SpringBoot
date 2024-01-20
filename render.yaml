@@ -2,7 +2,7 @@ services:
   # Java App Service
   - type: web
     name: java-app
-    env: docker
+    runtime: docker
     dockerfilePath: ./Dockerfile
     healthCheckPath: /
     envVars:
@@ -12,7 +12,7 @@ services:
   # Prometheus Service
   - type: web
     name: prometheus
-    env: docker
+    runtime: image
     image:
       url: docker.io/prom/prometheus:v2.44.0
     healthCheckPath: /
@@ -27,7 +27,7 @@ services:
   # Grafana Service
   - type: web
     name: grafana
-    env: docker
+    runtime: image
     image:
       url: docker.io/grafana/grafana:9.5.2
     healthCheckPath: /
