@@ -2,39 +2,39 @@ services:
   # Java App Service
   - type: web
     name: java-app
-    runtime: docker
-    dockerfilePath: ./Dockerfile
-    healthCheckPath: /
+    env: docker
+    buildCommand: ./build.sh # Replace with your actual build command
+    startCommand: ./start.sh # Replace with your actual start command
+    dockerfilePath: Dockerfile
     envVars:
-      - key: PORT
-        value: 8080
+    # Add environment variables here if needed
+    ports:
+      - port: 8080
+        protocol: http
 
   # Prometheus Service
   - type: web
     name: prometheus
-    runtime: image
+    env: image
     image:
-      url: docker.io/prom/prometheus:v2.44.0
-    healthCheckPath: /
-    envVars:
-      - key: PORT
-        value: 10000
-    disk:
-      name: prometheus-data
-      mountPath: /etc/prometheus
-      sizeGB: 1
+      url: prom/prometheus:v2.44.0
+    ports:
+      - port: 10000
+        protocol: http
+    volumes:
+      - source: ./prometheus.yml
+        destination: /etc/prometheus/prometheus.yml
 
   # Grafana Service
   - type: web
     name: grafana
-    runtime: image
+    env: image
     image:
-      url: docker.io/grafana/grafana:9.5.2
-    healthCheckPath: /
-    envVars:
-      - key: PORT
-        value: 3000
-    disk:
-      name: grafana-data
-      mountPath: /etc/grafana
-      sizeGB: 1
+      url: grafana/grafana:9.5.2
+    ports:
+      - port: 3000
+        protocol: http
+    restartPolicy: unless-stopped
+    volumes:
+      - source: ./datasources
+        destination: /etc/grafana/provisioning/datasources
