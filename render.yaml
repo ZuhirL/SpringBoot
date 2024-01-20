@@ -12,7 +12,7 @@ services:
     name: prometheus
     runtime: image
     image:
-      url: 'prom/prometheus:v2.44.0'
+      url: 'registry.hub.docker.com/library/prom/prometheus:v2.44.0'
     healthCheckPath: '/'
     envVars:
       - key: PORT
@@ -22,7 +22,7 @@ services:
     name: grafana
     runtime: image
     image:
-      url: 'grafana/grafana:9.5.2'
+      url: 'registry.hub.docker.com/library/grafana/grafana:9.5.2'
     healthCheckPath: '/'
     envVars:
       - key: PORT
