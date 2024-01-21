@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,7 @@ public class CdrService {
     return cdrDto;
   }
 
+  @Cacheable("cdr.by-id")
   public CdrDto getById(Long id) {
     return cdrRepository.findById(id)
         .map(cdrMapper::toCdrDto)

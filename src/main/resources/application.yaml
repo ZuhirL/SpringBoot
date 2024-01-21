@@ -20,3 +20,8 @@ management:
     web:
       exposure:
         include: 'prometheus'
+
+cache:
+  specs:
+    cdr:
+      by-id: maximumSize=100,expireAfterWrite=1h,recordStats
