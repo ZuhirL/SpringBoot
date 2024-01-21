@@ -2,7 +2,6 @@ package com.example.springboot.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import java.util.Map;
-import java.util.stream.Collectors;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -34,7 +33,7 @@ public class CacheConfiguration {
       cacheManager.setCaches(specs.entrySet()
           .stream()
           .map(spec -> new CaffeineCache(spec.getKey(), Caffeine.from(spec.getValue()).build()))
-          .collect(Collectors.toList()));
+          .toList());
     }
 
     return cacheManager;
