@@ -1,7 +1,5 @@
 package com.example.springboot.validator;
 
-import static com.example.springboot.service.CdrService.ORDER_TIME_MAP;
-
 import com.example.springboot.dao.CdrEntity;
 import com.example.springboot.dao.CdrRepository;
 import com.example.springboot.dto.CdrDto;
@@ -22,7 +20,7 @@ public class ValidationService {
 
   public void isTimeOverlapValid(CdrDto cdrDto) {
     Page<CdrEntity> cdrEntityPage = cdrRepository.findByVehicleId(cdrDto.getVehicleIdentification(),
-        PageRequest.of(0, 1, Sort.by(ORDER_TIME_MAP.get("startAt")).descending()));
+        PageRequest.of(0, 1, Sort.by("startTime").descending()));
     if (!cdrEntityPage.isEmpty() && !cdrEntityPage.getContent().isEmpty() &&
         cdrDto.getStartAt().toEpochMilli() < cdrMapper.toCdrDto(cdrEntityPage.getContent().get(0))
             .getEndAt().toEpochMilli()) {
