@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,22 +41,10 @@ public class CdrService {
         .orElseThrow(CdrNotFoundException::new);
   }
 
-  public List<CdrDto> getByVehicleId(String vehicleId, String sortBy, String order) {
-    if (ORDER_TIME_MAP.containsKey(sortBy)) {
-      if (DESC_ORDER.equals(order)) {
-        return cdrRepository.findByVehicleId(vehicleId,
-                Sort.by(ORDER_TIME_MAP.get(sortBy)).descending()).stream()
-            .map(cdrMapper::toCdrDto)
-            .toList();
-      }
-      return cdrRepository.findByVehicleId(vehicleId, Sort.by(ORDER_TIME_MAP.get(sortBy))).stream()
-          .map(cdrMapper::toCdrDto)
-          .toList();
-    } else {
-      return cdrRepository.findByVehicleId(vehicleId).stream()
-          .map(cdrMapper::toCdrDto)
-          .toList();
-    }
+  public List<CdrDto> getByVehicleId(String vehicleId, Pageable pageable) {
+    return cdrRepository.findByVehicleId(vehicleId, pageable).stream()
+        .map(cdrMapper::toCdrDto)
+        .toList();
   }
 
 }

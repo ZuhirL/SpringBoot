@@ -11,12 +11,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -74,9 +74,8 @@ public class CdrController {
               schema = @Schema(implementation = ErrorResponse.class))})})
   @GetMapping("vehicle-identification/{vehicleId}")
   public List<CdrDto> getByVehicleIdentification(@PathVariable String vehicleId,
-      @RequestParam(required = false) String sortBy,
-      @RequestParam(required = false) String order) {
-    return cdrService.getByVehicleId(vehicleId, sortBy, order);
+      Pageable pageable) {
+    return cdrService.getByVehicleId(vehicleId, pageable);
   }
 
 }
