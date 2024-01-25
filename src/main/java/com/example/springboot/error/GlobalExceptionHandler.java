@@ -3,6 +3,7 @@ package com.example.springboot.error;
 import static com.example.springboot.error.ErrorCodeEnum.CDR_NOT_FOUND;
 import static com.example.springboot.error.ErrorCodeEnum.GENERIC_ERROR;
 import static com.example.springboot.error.ErrorCodeEnum.INVALID_REQUEST_BODY;
+import static com.example.springboot.error.exception.TimeOverlapException.TIME_OVERLAP_DESCRIPTION;
 
 import com.example.springboot.error.exception.CdrNotFoundException;
 import com.example.springboot.error.exception.TimeOverlapException;
@@ -46,7 +47,7 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(TimeOverlapException.class)
   public ErrorResponse handleTimeOverlapException(TimeOverlapException ex) {
     List<String> errors = new ArrayList<>();
-    errors.add(ex.getMessage());
+    errors.add(TIME_OVERLAP_DESCRIPTION);
     return new ErrorResponse(INVALID_REQUEST_BODY.getErrorCode(),
         INVALID_REQUEST_BODY.getErrorDescription(), errors.toArray(new String[0]));
   }
