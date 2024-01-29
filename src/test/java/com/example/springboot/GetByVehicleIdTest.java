@@ -31,24 +31,24 @@ class GetByVehicleIdTest {
                     "id": 1,
                     "sessionIdentification": "CDR001",
                     "vehicleIdentification": "VH001",
-                    "startAt": "2023-05-19T08:00:00Z",
-                    "endAt": "2023-05-19T10:00:00Z",
+                    "startAt": "2023-05-19T10:00:00Z",
+                    "endAt": "2023-05-19T12:00:00Z",
                     "amount": 25.50
                 },
                 {
                     "id": 4,
                     "sessionIdentification": "CDR004",
                     "vehicleIdentification": "VH001",
-                    "startAt": "2023-05-19T06:00:00Z",
-                    "endAt": "2023-05-19T07:30:00Z",
+                    "startAt": "2023-05-19T08:00:00Z",
+                    "endAt": "2023-05-19T09:30:00Z",
                     "amount": 20.00
                 },
                 {
                     "id": 7,
                     "sessionIdentification": "CDR007",
                     "vehicleIdentification": "VH001",
-                    "startAt": "2023-05-19T09:30:00Z",
-                    "endAt": "2023-05-19T10:30:00Z",
+                    "startAt": "2023-05-19T11:30:00Z",
+                    "endAt": "2023-05-19T12:30:00Z",
                     "amount": 15.25
                 }
             ]
@@ -67,16 +67,16 @@ class GetByVehicleIdTest {
                     "id": 1,
                     "sessionIdentification": "CDR001",
                     "vehicleIdentification": "VH001",
-                    "startAt": "2023-05-19T08:00:00Z",
-                    "endAt": "2023-05-19T10:00:00Z",
+                    "startAt": "2023-05-19T10:00:00Z",
+                    "endAt": "2023-05-19T12:00:00Z",
                     "amount": 25.50
                 },
                 {
                     "id": 4,
                     "sessionIdentification": "CDR004",
                     "vehicleIdentification": "VH001",
-                    "startAt": "2023-05-19T06:00:00Z",
-                    "endAt": "2023-05-19T07:30:00Z",
+                    "startAt": "2023-05-19T08:00:00Z",
+                    "endAt": "2023-05-19T09:30:00Z",
                     "amount": 20.00
                 }
             ]
@@ -95,8 +95,8 @@ class GetByVehicleIdTest {
                     "id": 7,
                     "sessionIdentification": "CDR007",
                     "vehicleIdentification": "VH001",
-                    "startAt": "2023-05-19T09:30:00Z",
-                    "endAt": "2023-05-19T10:30:00Z",
+                    "startAt": "2023-05-19T11:30:00Z",
+                    "endAt": "2023-05-19T12:30:00Z",
                     "amount": 15.25
                 }
             ]
@@ -125,16 +125,16 @@ class GetByVehicleIdTest {
                     "id": 7,
                     "sessionIdentification": "CDR007",
                     "vehicleIdentification": "VH001",
-                    "startAt": "2023-05-19T09:30:00Z",
-                    "endAt": "2023-05-19T10:30:00Z",
+                    "startAt": "2023-05-19T11:30:00Z",
+                    "endAt": "2023-05-19T12:30:00Z",
                     "amount": 15.25
                 },
                 {
                     "id": 1,
                     "sessionIdentification": "CDR001",
                     "vehicleIdentification": "VH001",
-                    "startAt": "2023-05-19T08:00:00Z",
-                    "endAt": "2023-05-19T10:00:00Z",
+                    "startAt": "2023-05-19T10:00:00Z",
+                    "endAt": "2023-05-19T12:00:00Z",
                     "amount": 25.50
                 }
             ]
