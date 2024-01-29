@@ -28,8 +28,8 @@ class GetByIdTest {
                 "id": 1,
                 "sessionIdentification": "CDR001",
                 "vehicleIdentification": "VH001",
-                "startAt": "2023-05-19T08:00:00Z",
-                "endAt": "2023-05-19T10:00:00Z",
+                "startAt": "2023-05-19T10:00:00Z",
+                "endAt": "2023-05-19T12:00:00Z",
                 "amount": 25.50
             }
             """));
