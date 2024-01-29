@@ -1,5 +1,10 @@
 package com.example.springboot;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,49 +20,132 @@ class GetByVehicleIdTest {
 
   @Autowired
   private MockMvc mvc;
-/*
-    @Test
-    void getByIdSuccess() throws Exception {
-        mvc.perform(get("/cdr/vehicle-identification/VH001"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("[{\"id\":1,\"sessionIdentification\":\"CDR001\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684483200.000000000,\"endAt\":1684490400.000000000,\"amount\":25.50},{\"id\":4,\"sessionIdentification\":\"CDR004\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684476000.000000000,\"endAt\":1684481400.000000000,\"amount\":20.00},{\"id\":7,\"sessionIdentification\":\"CDR007\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684488600.000000000,\"endAt\":1684492200.000000000,\"amount\":15.25}]"));
-    }
 
-    @Test
-    void getByIdSuccessOrderByStartAtDesc() throws Exception {
-        mvc.perform(get("/cdr/vehicle-identification/VH001?sortBy=startAt&order=desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("[{\"id\":7,\"sessionIdentification\":\"CDR007\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684488600.000000000,\"endAt\":1684492200.000000000,\"amount\":15.25},{\"id\":1,\"sessionIdentification\":\"CDR001\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684483200.000000000,\"endAt\":1684490400.000000000,\"amount\":25.50},{\"id\":4,\"sessionIdentification\":\"CDR004\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684476000.000000000,\"endAt\":1684481400.000000000,\"amount\":20.00}]"));
-    }
+  @Test
+  void getByVehicleIdSuccess() throws Exception {
+    mvc.perform(get("/cdr/vehicle-identification/VH001"))
+        .andExpect(status().isOk())
+        .andExpect(content().json("""
+            [
+                {
+                    "id": 1,
+                    "sessionIdentification": "CDR001",
+                    "vehicleIdentification": "VH001",
+                    "startAt": "2023-05-19T08:00:00Z",
+                    "endAt": "2023-05-19T10:00:00Z",
+                    "amount": 25.50
+                },
+                {
+                    "id": 4,
+                    "sessionIdentification": "CDR004",
+                    "vehicleIdentification": "VH001",
+                    "startAt": "2023-05-19T06:00:00Z",
+                    "endAt": "2023-05-19T07:30:00Z",
+                    "amount": 20.00
+                },
+                {
+                    "id": 7,
+                    "sessionIdentification": "CDR007",
+                    "vehicleIdentification": "VH001",
+                    "startAt": "2023-05-19T09:30:00Z",
+                    "endAt": "2023-05-19T10:30:00Z",
+                    "amount": 15.25
+                }
+            ]
+            """));
+  }
 
-    @Test
-    void getByIdSuccessOrderByStartAtAsc() throws Exception {
-        mvc.perform(get("/cdr/vehicle-identification/VH001?sortBy=startAt&order=asc"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("[{\"id\":4,\"sessionIdentification\":\"CDR004\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684476000.000000000,\"endAt\":1684481400.000000000,\"amount\":20.00},{\"id\":1,\"sessionIdentification\":\"CDR001\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684483200.000000000,\"endAt\":1684490400.000000000,\"amount\":25.50},{\"id\":7,\"sessionIdentification\":\"CDR007\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684488600.000000000,\"endAt\":1684492200.000000000,\"amount\":15.25}]"));
-    }
+  @Test
+  void getByVehicleIdSuccessWithPage0AndSize2() throws Exception {
+    mvc.perform(get("/cdr/vehicle-identification/VH001")
+            .queryParam("page", "0")
+            .queryParam("size", "2"))
+        .andExpect(status().isOk())
+        .andExpect(content().json("""
+            [
+                {
+                    "id": 1,
+                    "sessionIdentification": "CDR001",
+                    "vehicleIdentification": "VH001",
+                    "startAt": "2023-05-19T08:00:00Z",
+                    "endAt": "2023-05-19T10:00:00Z",
+                    "amount": 25.50
+                },
+                {
+                    "id": 4,
+                    "sessionIdentification": "CDR004",
+                    "vehicleIdentification": "VH001",
+                    "startAt": "2023-05-19T06:00:00Z",
+                    "endAt": "2023-05-19T07:30:00Z",
+                    "amount": 20.00
+                }
+            ]
+            """));
+  }
 
-    @Test
-    void getByIdSuccessOrderByEndAtDesc() throws Exception {
-        mvc.perform(get("/cdr/vehicle-identification/VH001?sortBy=endAt&order=desc"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("[{\"id\":7,\"sessionIdentification\":\"CDR007\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684488600.000000000,\"endAt\":1684492200.000000000,\"amount\":15.25},{\"id\":1,\"sessionIdentification\":\"CDR001\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684483200.000000000,\"endAt\":1684490400.000000000,\"amount\":25.50},{\"id\":4,\"sessionIdentification\":\"CDR004\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684476000.000000000,\"endAt\":1684481400.000000000,\"amount\":20.00}]"));
-    }
+  @Test
+  void getByVehicleIdSuccessWithPage1AndSize2() throws Exception {
+    mvc.perform(get("/cdr/vehicle-identification/VH001")
+            .queryParam("page", "1")
+            .queryParam("size", "2"))
+        .andExpect(status().isOk())
+        .andExpect(content().json("""
+            [
+                {
+                    "id": 7,
+                    "sessionIdentification": "CDR007",
+                    "vehicleIdentification": "VH001",
+                    "startAt": "2023-05-19T09:30:00Z",
+                    "endAt": "2023-05-19T10:30:00Z",
+                    "amount": 15.25
+                }
+            ]
+            """));
+  }
 
-    @Test
-    void getByIdSuccessOrderByEndAtAsc() throws Exception {
-        mvc.perform(get("/cdr/vehicle-identification/VH001?sortBy=endAt&order=asc"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("[{\"id\":4,\"sessionIdentification\":\"CDR004\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684476000.000000000,\"endAt\":1684481400.000000000,\"amount\":20.00},{\"id\":1,\"sessionIdentification\":\"CDR001\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684483200.000000000,\"endAt\":1684490400.000000000,\"amount\":25.50},{\"id\":7,\"sessionIdentification\":\"CDR007\",\"vehicleIdentification\":\"VH001\",\"startAt\":1684488600.000000000,\"endAt\":1684492200.000000000,\"amount\":15.25}]"));
-    }
+  @Test
+  void getByVehicleIdSuccessWithPage1AndSize3() throws Exception {
+    mvc.perform(get("/cdr/vehicle-identification/VH001")
+            .queryParam("page", "1")
+            .queryParam("size", "3"))
+        .andExpect(status().isOk())
+        .andExpect(content().json("[]"));
+  }
 
-    @Test
-    void getByIdFail() throws Exception {
-        mvc.perform(get("/cdr/vehicle-identification/VH00100"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("[]"));
-    }
+  @Test
+  void getByVehicleIdSuccessWithPage0AndSize2AndSortStartTimeDesc() throws Exception {
+    mvc.perform(get("/cdr/vehicle-identification/VH001")
+            .queryParam("page", "0")
+            .queryParam("size", "2")
+            .queryParam("sort", "startTime,desc"))
+        .andExpect(status().isOk())
+        .andExpect(content().json("""
+            [
+                {
+                    "id": 7,
+                    "sessionIdentification": "CDR007",
+                    "vehicleIdentification": "VH001",
+                    "startAt": "2023-05-19T09:30:00Z",
+                    "endAt": "2023-05-19T10:30:00Z",
+                    "amount": 15.25
+                },
+                {
+                    "id": 1,
+                    "sessionIdentification": "CDR001",
+                    "vehicleIdentification": "VH001",
+                    "startAt": "2023-05-19T08:00:00Z",
+                    "endAt": "2023-05-19T10:00:00Z",
+                    "amount": 25.50
+                }
+            ]
+            """));
+  }
 
- */
+  @Test
+  void getByVehicleIdNotExistSuccess() throws Exception {
+    mvc.perform(get("/cdr/vehicle-identification/VH00100"))
+        .andExpect(status().isOk())
+        .andExpect(content().json("[]"));
+  }
 
 }
