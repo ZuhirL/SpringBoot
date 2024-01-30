@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.example.springboot.dao.CdrEntity;
 import com.example.springboot.dto.CdrDto;
-import com.example.springboot.mapper.CdrMapper;
 import com.example.springboot.mapper.CdrMapperImpl;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -12,11 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
 
 @ExtendWith(MockitoExtension.class)
-@DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 public class MapperTest {
 
   @InjectMocks

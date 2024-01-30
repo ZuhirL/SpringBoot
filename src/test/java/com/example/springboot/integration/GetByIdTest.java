@@ -41,11 +41,11 @@ class GetByIdTest {
     mockMvc.perform(get("/cdr/id/100"))
         .andExpect(status().isNotFound())
         .andExpect(content().json("""
-                {
-                    "errorCode": "CDR-001",
-                    "errorDescription": "Cdr not found"
-                }
-                """));
+            {
+                "errorCode": "CDR-001",
+                "errorDescription": "Cdr not found"
+            }
+            """));
   }
 
 }
