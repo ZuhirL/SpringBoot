@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.example.springboot.integration;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
