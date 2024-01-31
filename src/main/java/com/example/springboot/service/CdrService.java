@@ -6,9 +6,9 @@ import com.example.springboot.dto.CdrDto;
 import com.example.springboot.error.exception.CdrNotFoundException;
 import com.example.springboot.mapper.CdrMapper;
 import com.example.springboot.validator.ValidationService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -34,10 +34,8 @@ public class CdrService {
         .orElseThrow(CdrNotFoundException::new);
   }
 
-  public List<CdrDto> getByVehicleId(String vehicleId, Pageable pageable) {
-    return cdrRepository.findByVehicleId(vehicleId, pageable).stream()
-        .map(cdrMapper::toCdrDto)
-        .toList();
+  public Page<CdrDto> getByVehicleId(String vehicleId, Pageable pageable) {
+    return cdrRepository.findByVehicleId(vehicleId, pageable).map(cdrMapper::toCdrDto);
   }
 
 }

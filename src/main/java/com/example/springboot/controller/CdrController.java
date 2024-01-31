@@ -9,8 +9,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -73,7 +73,7 @@ public class CdrController {
           content = {@Content(mediaType = "application/json",
               schema = @Schema(implementation = ErrorResponse.class))})})
   @GetMapping("vehicle-identification/{vehicleId}")
-  public List<CdrDto> getByVehicleIdentification(@PathVariable String vehicleId,
+  public Page<CdrDto> getByVehicleIdentification(@PathVariable String vehicleId,
       Pageable pageable) {
     return cdrService.getByVehicleId(vehicleId, pageable);
   }

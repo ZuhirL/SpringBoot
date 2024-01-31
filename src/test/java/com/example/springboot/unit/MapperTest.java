@@ -52,5 +52,4 @@ public class MapperTest {
     assertEquals(cdrEntity, getCdrEntity());
   }
 
-
 }
