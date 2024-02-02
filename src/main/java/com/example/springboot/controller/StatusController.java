@@ -13,4 +13,9 @@ public class StatusController {
     return "OK";
   }
 
+  @GetMapping(value = "/healthz")
+  public String healthz() {
+    return "OK";
+  }
+
 }
