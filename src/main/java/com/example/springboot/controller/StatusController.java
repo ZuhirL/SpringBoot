@@ -17,7 +17,7 @@ public class StatusController {
 
   @GetMapping(value = "/healthz")
   public String healthz() {
-    log.debug("Health check endpoint called");
+    log.info("Health check endpoint called");
     cdrRepository.count();
     return "OK";
   }
