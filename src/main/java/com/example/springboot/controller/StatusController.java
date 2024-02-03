@@ -15,14 +15,9 @@ public class StatusController {
 
   private final CdrRepository cdrRepository;
 
-  @GetMapping(value = "/alive")
-  public String alive() {
-    return "OK";
-  }
-
   @GetMapping(value = "/healthz")
   public String healthz() {
-    log.info("Health check endpoint called");
+    log.debug("Health check endpoint called");
     cdrRepository.count();
     return "OK";
   }
