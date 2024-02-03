@@ -46,9 +46,11 @@ public class CdrService {
         .orElseThrow(CdrNotFoundException::new);
   }
 
-  public Page<CdrDto> getByVehicleId(String vehicleId, int page, int size, String sort, String order) {
+  public Page<CdrDto> getByVehicleId(String vehicleId, int page, int size, String sort,
+      String order) {
     return cdrRepository.findByVehicleId(vehicleId,
-            PageRequest.of(page, size, Sort.by(Direction.fromString(order), fieldMappings.get(sort))))
+            PageRequest.of(page, size,
+                Sort.by(Direction.fromString(order), fieldMappings.getOrDefault(sort, sort))))
         .map(cdrMapper::toCdrDto);
   }
 
