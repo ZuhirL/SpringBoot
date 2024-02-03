@@ -22,8 +22,8 @@ public class ValidationService {
     Page<CdrEntity> cdrEntityPage = cdrRepository.findByVehicleId(cdrDto.getVehicleIdentification(),
         PageRequest.of(0, 1, Sort.by("startTime").descending()));
     if (!cdrEntityPage.isEmpty() && !cdrEntityPage.getContent().isEmpty() &&
-        cdrDto.getStartAt().toEpochMilli() < cdrMapper.toCdrDto(cdrEntityPage.getContent().get(0))
-            .getEndAt().toEpochMilli()) {
+        cdrDto.getStartAt().toEpochMilli() < cdrMapper.toCdrDto(
+            cdrEntityPage.getContent().getFirst()).getEndAt().toEpochMilli()) {
       throw new TimeOverlapException();
     }
   }

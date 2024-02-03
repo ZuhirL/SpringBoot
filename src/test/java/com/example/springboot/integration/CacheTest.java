@@ -1,6 +1,7 @@
 package com.example.springboot.integration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.example.springboot.dto.CdrDto;
@@ -55,7 +56,7 @@ class CacheTest {
 
   @Test
   void cacheGetById() {
-    assertEquals(null, getCachedBook(1L));
+    assertNull(getCachedBook(1L));
     cdrService.getById(1L);
     assertEquals(getCdrDto1(), getCachedBook(1L));
   }
@@ -63,7 +64,7 @@ class CacheTest {
   @Test
   void cacheCreateAndGetById() {
     assertThrows(CdrNotFoundException.class, () -> cdrService.getById(8L));
-    assertEquals(null, getCachedBook(8L));
+    assertNull(getCachedBook(8L));
     CdrDto cdrDto = getCdrDtoNew();
     cdrService.createCdr(cdrDto);
     cdrService.getById(8L);

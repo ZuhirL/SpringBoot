@@ -2,6 +2,8 @@ package com.example.springboot.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -13,17 +15,11 @@ import org.springframework.stereotype.Component;
 @Component
 @EnableCaching
 @ConfigurationProperties(prefix = "cache")
+@Getter
+@Setter
 public class CacheConfiguration {
 
   private Map<String, String> specs;
-
-  public Map<String, String> getSpecs() {
-    return specs;
-  }
-
-  public void setSpecs(Map<String, String> specs) {
-    this.specs = specs;
-  }
 
   @Bean
   public CacheManager cacheManager() {
