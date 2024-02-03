@@ -13,7 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class MapperTest {
+class MapperTest {
 
   @InjectMocks
   CdrMapperImpl cdrMapper;
@@ -41,13 +41,13 @@ public class MapperTest {
   }
 
   @Test
-  public void mapToCdrDto() {
+  void mapToCdrDto() {
     CdrDto cdrDto = cdrMapper.toCdrDto(getCdrEntity());
     assertEquals(cdrDto, getCdrDto());
   }
 
   @Test
-  public void mapToCdrEntity() {
+  void mapToCdrEntity() {
     CdrEntity cdrEntity = cdrMapper.toCdrEntity(getCdrDto());
     assertEquals(cdrEntity, getCdrEntity());
   }
