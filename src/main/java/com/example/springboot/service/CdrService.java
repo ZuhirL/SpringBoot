@@ -1,20 +1,32 @@
 package com.example.springboot.service;
 
+
 import com.example.springboot.dao.CdrEntity;
 import com.example.springboot.dao.CdrRepository;
 import com.example.springboot.dto.CdrDto;
 import com.example.springboot.error.exception.CdrNotFoundException;
 import com.example.springboot.mapper.CdrMapper;
 import com.example.springboot.validator.ValidationService;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class CdrService {
+
+  private static final Map<String, String> fieldMappings = Map.of(
+      "id", "id",
+      "sessionIdentification", "sessionId",
+      "vehicleIdentification", "vehicleId",
+      "startAt", "startTime",
+      "endAt", "endTime",
+      "amount", "totalCost");
 
   private final CdrRepository cdrRepository;
   private final CdrMapper cdrMapper;
@@ -34,8 +46,10 @@ public class CdrService {
         .orElseThrow(CdrNotFoundException::new);
   }
 
-  public Page<CdrDto> getByVehicleId(String vehicleId, Pageable pageable) {
-    return cdrRepository.findByVehicleId(vehicleId, pageable).map(cdrMapper::toCdrDto);
+  public Page<CdrDto> getByVehicleId(String vehicleId, int page, int size, String sort, String order) {
+    return cdrRepository.findByVehicleId(vehicleId,
+            PageRequest.of(page, size, Sort.by(Direction.fromString(order), fieldMappings.get(sort))))
+        .map(cdrMapper::toCdrDto);
   }
 
 }
