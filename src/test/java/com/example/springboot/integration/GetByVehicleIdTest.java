@@ -27,7 +27,7 @@ class GetByVehicleIdTest {
         .andExpect(status().isOk())
         .andExpect(content().json("""
             {
-              "content": 
+              "content":
               [
                   {
                       "id": 1,
@@ -66,7 +66,7 @@ class GetByVehicleIdTest {
         .andExpect(status().isOk())
         .andExpect(content().json("""
             {
-              "content": 
+              "content":
               [
                   {
                       "id": 1,
@@ -97,7 +97,7 @@ class GetByVehicleIdTest {
         .andExpect(status().isOk())
         .andExpect(content().json("""
             {
-              "content": 
+              "content":
               [
                   {
                       "id": 7,
@@ -130,11 +130,12 @@ class GetByVehicleIdTest {
     mvc.perform(get("/cdr/vehicle-identification/VH001")
             .queryParam("page", "0")
             .queryParam("size", "2")
-            .queryParam("sort", "startTime,desc"))
+            .queryParam("sort", "startTime")
+            .queryParam("order", "desc"))
         .andExpect(status().isOk())
         .andExpect(content().json("""
             {
-              "content": 
+              "content":
               [
                 {
                     "id": 7,
