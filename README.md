@@ -3,8 +3,7 @@
 ## PROJECT DESCRIPTION
 
 An example of an e-mobility charging solutions platform, the service provide a REST API that is
-capable
-of managing Charge Detail Records (CDR) in real time to a network of Charge Point Operators
+capable of managing Charge Detail Records (CDR) in real time to a network of Charge Point Operators
 (CPO).
 
 In order to achieve that goal, a CDR contract and a set of endpoints are required as follows:
@@ -35,7 +34,7 @@ In order to achieve that goal, a CDR contract and a set of endpoints are require
 
 • Search all Charge Detail Records for a particular vehicle
 
-    • "Start time" and "End time" fields must be sortable
+    • All fields must be sortable
 
 ## DATABASE
 
@@ -50,3 +49,36 @@ resources folder
 ## SWAGGER-UI
 
 http://localhost:8080/swagger-ui/index.html
+
+## DOCKER
+
+The project can be easily deployed using Docker Compose, as it consists of three Docker images:
+
+• Spring Boot application
+
+• Prometheus
+
+• Grafana
+
+Simply run the following command to start the project: **docker compose up**
+
+This will start all the necessary containers and services for your project.
+
+## PROJECT HOSTING
+
+### GitHub Repository and Workflow
+
+This project is hosted on GitHub. You can find the repository at [https://github.com/ZuhirL/SpringBoot](https://github.com/ZuhirL/SpringBoot).
+
+### Live Deployment
+
+The project is also hosted on Render at [https://spring-boot-xwj7.onrender.com/swagger-ui.html](https://spring-boot-xwj7.onrender.com/swagger-ui.html). 
+
+Please note that this deployment may experience occasional downtime due to limitations of the free hosting tier.
+
+In the event of downtime, please be patient as the platform will automatically redeploy the application. 
+This ensures that you can access the application as soon as it becomes available again. 
+
+### GitHub Workflow
+
+It's established a GitHub Actions workflow to automate various tasks, such as building, testing, and deploying the project. You can view the workflow configuration and status by navigating to the "Actions" tab on the GitHub repository.
