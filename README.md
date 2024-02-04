@@ -70,6 +70,10 @@ This will start all the necessary containers and services for your project.
 
 This project is hosted on GitHub. You can find the repository at [https://github.com/ZuhirL/SpringBoot](https://github.com/ZuhirL/SpringBoot).
 
+### GitHub Workflow
+
+It's established a GitHub Actions workflow to automate various tasks, such as building, testing, and deploying the project. You can view the workflow configuration and status by navigating to the "Actions" tab on the GitHub repository.
+
 ### Live Deployment
 
 The project is also hosted on Render at [https://spring-boot-xwj7.onrender.com/swagger-ui.html](https://spring-boot-xwj7.onrender.com/swagger-ui.html). 
@@ -78,7 +82,3 @@ Please note that this deployment may experience occasional downtime due to limit
 
 In the event of downtime, please be patient as the platform will automatically redeploy the application. 
 This ensures that you can access the application as soon as it becomes available again. 
-
-### GitHub Workflow
-
-It's established a GitHub Actions workflow to automate various tasks, such as building, testing, and deploying the project. You can view the workflow configuration and status by navigating to the "Actions" tab on the GitHub repository.
