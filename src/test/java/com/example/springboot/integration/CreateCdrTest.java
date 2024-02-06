@@ -69,7 +69,7 @@ class CreateCdrTest {
                 "errorCode": "CDR-002",
                 "errorDescription": "Invalid request body",
                 "errorDetails": [
-                    "Start time can't be before last end time"
+                    "StartAt can't be before last endAt"
                 ]
             }
             """));
