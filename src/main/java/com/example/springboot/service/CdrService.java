@@ -43,7 +43,7 @@ public class CdrService {
   public CdrDto getById(Long id) {
     return cdrRepository.findById(id)
         .map(cdrMapper::toCdrDto)
-        .orElseThrow(CdrNotFoundException::new);
+        .orElseThrow(() -> new CdrNotFoundException(id));
   }
 
   public Page<CdrDto> getByVehicleId(String vehicleId, int page, int size, String sort,

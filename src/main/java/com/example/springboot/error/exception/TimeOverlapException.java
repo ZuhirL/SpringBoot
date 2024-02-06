@@ -5,6 +5,8 @@ import lombok.Getter;
 @Getter
 public class TimeOverlapException extends RuntimeException {
 
-  public static final String TIME_OVERLAP_DESCRIPTION = "Start time can't be before last end time";
+  public TimeOverlapException() {
+    super("StartAt can't be before last endAt");
+  }
 
 }
