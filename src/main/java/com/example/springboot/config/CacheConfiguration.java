@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Setter
 public class CacheConfiguration {
 
-  private Map<String, String> spedcs;
+  private Map<String, String> specs;
 
   @Bean
   public CacheManager cacheManager() {
