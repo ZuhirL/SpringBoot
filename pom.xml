@@ -19,6 +19,15 @@
 
   <properties>
     <java.version>21</java.version>
+    <mapstruct.version>1.5.5.Final</mapstruct.version>
+    <mapstruct-processor.version>1.5.5.Final</mapstruct-processor.version>
+    <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+    <springdoc-openapi-starter-webmvc-ui.version>2.3.0</springdoc-openapi-starter-webmvc-ui.version>
+    <java-jwt.version>4.4.0</java-jwt.version>
+    <versions-maven-plugin.version>2.16.2</versions-maven-plugin.version>
+    <maven-enforcer-plugin.version>3.4.1</maven-enforcer-plugin.version>
+    <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
+    <require-maven.version>3.9.6</require-maven.version>
   </properties>
 
   <dependencies>
@@ -56,19 +65,19 @@
     <dependency>
       <groupId>org.mapstruct</groupId>
       <artifactId>mapstruct</artifactId>
-      <version>1.5.5.Final</version>
+      <version>${mapstruct.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.mapstruct</groupId>
       <artifactId>mapstruct-processor</artifactId>
-      <version>1.5.5.Final</version>
+      <version>${mapstruct-processor.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok-mapstruct-binding</artifactId>
-      <version>0.2.0</version>
+      <version>${lombok-mapstruct-binding.version}</version>
     </dependency>
 
     <dependency>
@@ -85,7 +94,7 @@
     <dependency>
       <groupId>org.springdoc</groupId>
       <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-      <version>2.3.0</version>
+      <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
     </dependency>
 
     <dependency>
@@ -97,7 +106,6 @@
       <groupId>com.github.ben-manes.caffeine</groupId>
       <artifactId>caffeine</artifactId>
     </dependency>
-
   </dependencies>
 
   <build>
@@ -109,7 +117,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
-        <version>2.16.2</version>
+        <version>${versions-maven-plugin.version}</version>
         <configuration>
           <rulesUri>file:///${project.basedir}/rules.xml</rulesUri>
         </configuration>
@@ -117,7 +125,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.4.1</version>
+        <version>${maven-enforcer-plugin.version}</version>
         <executions>
           <execution>
             <id>enforce-maven</id>
@@ -127,7 +135,7 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>3.9.6</version>
+                  <version>${require-maven.version}</version>
                 </requireMavenVersion>
               </rules>
             </configuration>
@@ -137,7 +145,7 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.11</version>
+        <version>${jacoco-maven-plugin.version}</version>
         <executions>
           <execution>
             <goals>
