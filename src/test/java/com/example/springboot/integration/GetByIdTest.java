@@ -4,24 +4,30 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.example.springboot.config.TestConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @EnableWebMvc
 @AutoConfigureMockMvc
 @SpringBootTest
+@Import(TestConfig.class)
 class GetByIdTest {
 
   @Autowired
   private MockMvc mockMvc;
 
+  @Autowired
+  private String jwtToken;
+
   @Test
   void getByIdSuccess() throws Exception {
-    mockMvc.perform(get("/cdr/id/1"))
+    mockMvc.perform(get("/cdr/id/1").header("Authorization", "Bearer " + jwtToken))
         .andExpect(status().isOk())
         .andExpect(content().json("""
             {
@@ -35,10 +41,9 @@ class GetByIdTest {
             """));
   }
 
-
   @Test
   void getByIdFail() throws Exception {
-    mockMvc.perform(get("/cdr/id/100"))
+    mockMvc.perform(get("/cdr/id/100").header("Authorization", "Bearer " + jwtToken))
         .andExpect(status().isNotFound())
         .andExpect(content().json("""
             {
@@ -47,5 +52,4 @@ class GetByIdTest {
             }
             """));
   }
-
 }
