@@ -25,3 +25,8 @@ cache:
   specs:
     cdr:
       by-id: maximumSize=100,expireAfterWrite=1h,recordStats
+
+security:
+  jwt:
+    token:
+      secret-key: ${JWT_SECRET}
