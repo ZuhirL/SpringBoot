@@ -4,12 +4,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @EnableWebMvc
@@ -19,11 +23,28 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 class GetByVehicleIdTest {
 
   @Autowired
-  private MockMvc mvc;
+  private MockMvc mockMvc;
+
+  @Autowired
+  private String jwtToken;
+
+  @BeforeEach
+  void setUp(WebApplicationContext webApplicationContext) {
+    mockMvc = MockMvcBuilders
+        .webAppContextSetup(webApplicationContext)
+        .build();
+  }
+
+  private RequestPostProcessor postProcessor(String jwtToken) {
+    return mockRequest -> {
+      mockRequest.addHeader("Authorization", "Bearer " + jwtToken);
+      return mockRequest;
+    };
+  }
 
   @Test
   void getByVehicleIdSuccess() throws Exception {
-    mvc.perform(get("/cdr/vehicle-identification/VH001"))
+    mockMvc.perform(get("/cdr/vehicle-identification/VH001"))
         .andExpect(status().isOk())
         .andExpect(content().json("""
             {
@@ -60,7 +81,7 @@ class GetByVehicleIdTest {
 
   @Test
   void getByVehicleIdSuccessWithPage0AndSize2() throws Exception {
-    mvc.perform(get("/cdr/vehicle-identification/VH001")
+    mockMvc.perform(get("/cdr/vehicle-identification/VH001")
             .queryParam("page", "0")
             .queryParam("size", "2"))
         .andExpect(status().isOk())
@@ -91,7 +112,7 @@ class GetByVehicleIdTest {
 
   @Test
   void getByVehicleIdSuccessWithPage1AndSize2() throws Exception {
-    mvc.perform(get("/cdr/vehicle-identification/VH001")
+    mockMvc.perform(get("/cdr/vehicle-identification/VH001")
             .queryParam("page", "1")
             .queryParam("size", "2"))
         .andExpect(status().isOk())
@@ -114,7 +135,7 @@ class GetByVehicleIdTest {
 
   @Test
   void getByVehicleIdSuccessWithPage1AndSize3() throws Exception {
-    mvc.perform(get("/cdr/vehicle-identification/VH001")
+    mockMvc.perform(get("/cdr/vehicle-identification/VH001")
             .queryParam("page", "1")
             .queryParam("size", "3"))
         .andExpect(status().isOk())
@@ -127,7 +148,7 @@ class GetByVehicleIdTest {
 
   @Test
   void getByVehicleIdSuccessWithPage0AndSize2AndSortStartTimeDesc() throws Exception {
-    mvc.perform(get("/cdr/vehicle-identification/VH001")
+    mockMvc.perform(get("/cdr/vehicle-identification/VH001")
             .queryParam("page", "0")
             .queryParam("size", "2")
             .queryParam("sort", "startTime")
@@ -160,7 +181,7 @@ class GetByVehicleIdTest {
 
   @Test
   void getByVehicleIdNotExistSuccess() throws Exception {
-    mvc.perform(get("/cdr/vehicle-identification/VH00100"))
+    mockMvc.perform(get("/cdr/vehicle-identification/VH00100"))
         .andExpect(status().isOk())
         .andExpect(content().json("""
                       {
