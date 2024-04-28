@@ -5,18 +5,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.springboot.config.TestConfig;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @EnableWebMvc
 @AutoConfigureMockMvc
 @SpringBootTest
-@Import(TestConfig.class)
 class GetByIdTest {
 
   @Autowired
@@ -25,9 +28,23 @@ class GetByIdTest {
   @Autowired
   private String jwtToken;
 
+  @BeforeEach
+  void setUp(WebApplicationContext webApplicationContext) {
+    mockMvc = MockMvcBuilders
+        .webAppContextSetup(webApplicationContext)
+        .build();
+  }
+
+  private RequestPostProcessor postProcessor(String jwtToken) {
+    return mockRequest -> {
+      mockRequest.addHeader("Authorization", "Bearer " + jwtToken);
+      return mockRequest;
+    };
+  }
+
   @Test
   void getByIdSuccess() throws Exception {
-    mockMvc.perform(get("/cdr/id/1").header("Authorization", "Bearer " + jwtToken))
+    mockMvc.perform(get("/cdr/id/1"))
         .andExpect(status().isOk())
         .andExpect(content().json("""
             {
@@ -43,7 +60,7 @@ class GetByIdTest {
 
   @Test
   void getByIdFail() throws Exception {
-    mockMvc.perform(get("/cdr/id/100").header("Authorization", "Bearer " + jwtToken))
+    mockMvc.perform(get("/cdr/id/100"))
         .andExpect(status().isNotFound())
         .andExpect(content().json("""
             {
