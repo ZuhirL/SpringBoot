@@ -1,13 +1,11 @@
 package com.example.springboot.service;
 
-import com.example.springboot.config.TokenProvider;
 import com.example.springboot.dao.User;
 import com.example.springboot.dao.UserRepository;
 import com.example.springboot.dto.SignInDto;
 import com.example.springboot.dto.SignUpDto;
 import com.example.springboot.error.exception.InvalidJwtException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
