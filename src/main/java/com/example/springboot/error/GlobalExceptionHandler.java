@@ -2,7 +2,6 @@ package com.example.springboot.error;
 
 import static com.example.springboot.error.ErrorCodeEnum.CDR_NOT_FOUND;
 import static com.example.springboot.error.ErrorCodeEnum.GENERIC_ERROR;
-import static com.example.springboot.error.ErrorCodeEnum.INVALID_CREDENTIALS;
 import static com.example.springboot.error.ErrorCodeEnum.INVALID_REQUEST_BODY;
 
 import com.example.springboot.error.exception.CdrNotFoundException;
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -64,14 +62,6 @@ public class GlobalExceptionHandler {
   public ErrorResponse handleCdrNotFoundException(CdrNotFoundException ex) {
     log.warn("CdrNotFoundException", ex);
     return new ErrorResponse(CDR_NOT_FOUND.getErrorCode(), CDR_NOT_FOUND.getErrorDescription());
-  }
-
-  @ResponseBody
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
-  @ExceptionHandler(AuthenticationException.class)
-  public ErrorResponse handleAuthenticationException(AuthenticationException ex) {
-    log.warn("AuthenticationException", ex);
-    return new ErrorResponse(INVALID_CREDENTIALS.getErrorCode(), INVALID_CREDENTIALS.getErrorDescription());
   }
 
 }

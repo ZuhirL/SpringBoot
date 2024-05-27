@@ -6,14 +6,13 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.example.springboot.dao.User;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TokenProvider {
+
   @Value("${security.jwt.token.secret-key}")
   private String JWT_SECRET;
 
