@@ -8,7 +8,6 @@ import com.example.springboot.dto.SignUpDto;
 import com.example.springboot.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,21 +23,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final AuthenticationManager authenticationManager;
-    private final AuthService service;
-    private final TokenProvider tokenService;
+  private final AuthenticationManager authenticationManager;
+  private final AuthService service;
+  private final TokenProvider tokenService;
 
-    @PostMapping("/signup")
-    public ResponseEntity<Void> signUp(@RequestBody @Valid SignUpDto data) {
-        service.signUp(data);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
+  @PostMapping("/signup")
+  public ResponseEntity<Void> signUp(@RequestBody @Valid SignUpDto data) {
+    service.signUp(data);
+    return ResponseEntity.status(HttpStatus.CREATED).build();
+  }
 
-    @PostMapping("/signin")
-    public ResponseEntity<JwtDto> signIn(@RequestBody @Valid SignInDto data) throws AuthenticationException {
-        var usernamePassword = new UsernamePasswordAuthenticationToken(data.getUsername(), data.getPassword());
-        var authUser = authenticationManager.authenticate(usernamePassword);
-        var accessToken = tokenService.generateAccessToken((User) authUser.getPrincipal());
-        return ResponseEntity.ok(new JwtDto(accessToken));
-    }
+  @PostMapping("/signin")
+  public ResponseEntity<JwtDto> signIn(@RequestBody @Valid SignInDto data) throws AuthenticationException {
+    service.signinCheck(data);
+    var usernamePassword = new UsernamePasswordAuthenticationToken(data.getUsername(), data.getPassword());
+    var authUser = authenticationManager.authenticate(usernamePassword);
+    var accessToken = tokenService.generateAccessToken((User) authUser.getPrincipal());
+    return ResponseEntity.ok(new JwtDto(accessToken));
+  }
 }

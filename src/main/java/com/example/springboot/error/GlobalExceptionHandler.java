@@ -66,12 +66,4 @@ public class GlobalExceptionHandler {
     return new ErrorResponse(CDR_NOT_FOUND.getErrorCode(), CDR_NOT_FOUND.getErrorDescription());
   }
 
-  @ResponseBody
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
-  @ExceptionHandler(AuthenticationException.class)
-  public ErrorResponse handleAuthenticationException(AuthenticationException ex) {
-    log.warn("AuthenticationException", ex);
-    return new ErrorResponse(INVALID_CREDENTIALS.getErrorCode(), INVALID_CREDENTIALS.getErrorDescription());
-  }
-
 }
