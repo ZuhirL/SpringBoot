@@ -23,11 +23,11 @@ public class AuthService implements UserDetailsService {
     }
 
     public UserDetails signUp(SignUpDto data) throws InvalidJwtException {
-        if (repository.findByLogin(data.login()) != null) {
+        if (repository.findByLogin(data.getLogin()) != null) {
             throw new InvalidJwtException("Username already exists");
         }
-        String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        User newUser = new User(data.login(), encryptedPassword, data.role());
+        String encryptedPassword = new BCryptPasswordEncoder().encode(data.getPassword());
+        User newUser = new User(data.getLogin(), encryptedPassword, data.getRole());
         return repository.save(newUser);
     }
 }
