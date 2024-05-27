@@ -9,7 +9,8 @@ public enum ErrorCodeEnum {
 
   GENERIC_ERROR("CDR-000", "Generic error"),
   CDR_NOT_FOUND("CDR-001", "Cdr not found"),
-  INVALID_REQUEST_BODY("CDR-002", "Invalid request body");
+  INVALID_REQUEST_BODY("CDR-002", "Invalid request body"),
+  INVALID_CREDENTIALS("CDR-003", "Invalid credentials");
 
   private final String errorCode;
   private final String errorDescription;

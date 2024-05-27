@@ -2,6 +2,7 @@ package com.example.springboot.config;
 
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,10 +20,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class AuthConfig {
 
-  @Autowired
-  SecurityFilter securityFilter;
+  private final SecurityFilter securityFilter;
 
   @Bean
   SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
