@@ -36,9 +36,7 @@ public class AuthController {
 
   @Operation(summary = "SignUp user")
   @ApiResponses(value = {
-      @ApiResponse(responseCode = "201", description = "User created",
-          content = {@Content(mediaType = "application/json",
-              schema = @Schema(implementation = CdrDto.class))}),
+      @ApiResponse(responseCode = "201", description = "User created"),
       @ApiResponse(responseCode = "400", description = "Invalid data",
           content = {@Content(mediaType = "application/json",
               schema = @Schema(implementation = ErrorResponse.class))}),
@@ -55,7 +53,7 @@ public class AuthController {
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Login success",
           content = {@Content(mediaType = "application/json",
-              schema = @Schema(implementation = CdrDto.class))}),
+              schema = @Schema(implementation = JwtDto.class))}),
       @ApiResponse(responseCode = "400", description = "Invalid data",
           content = {@Content(mediaType = "application/json",
               schema = @Schema(implementation = ErrorResponse.class))}),
