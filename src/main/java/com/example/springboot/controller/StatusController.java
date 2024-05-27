@@ -1,6 +1,7 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.dao.CdrRepository;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ public class StatusController {
 
   private final CdrRepository cdrRepository;
 
+  @Operation(summary = "Health check")
   @GetMapping(value = "/healthz")
   public String healthz() {
     log.info("Health check endpoint called");
