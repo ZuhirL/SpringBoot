@@ -8,7 +8,7 @@ import lombok.Data;
 public class SignUpDto {
 
   @NotBlank(message = "Username is mandatory")
-  private String login;
+  private String username;
   @NotBlank(message = "Password is mandatory")
   private String password;
   @NotNull(message = "Role is mandatory")
