@@ -1,6 +1,6 @@
 package com.example.springboot.service;
 
-import com.example.springboot.dao.User;
+import com.example.springboot.dao.UserEntity;
 import com.example.springboot.dao.UserRepository;
 import com.example.springboot.dto.SignInDto;
 import com.example.springboot.dto.SignUpDto;
@@ -27,8 +27,8 @@ public class AuthService implements UserDetailsService {
       throw new InvalidJwtException("Username already exists");
     }
     String encryptedPassword = new BCryptPasswordEncoder().encode(data.getPassword());
-    User newUser = new User(data.getUsername(), encryptedPassword, data.getRole());
-    return repository.save(newUser);
+    UserEntity newUserEntity = new UserEntity(data.getUsername(), encryptedPassword, data.getRole());
+    return repository.save(newUserEntity);
   }
 
   public void signinCheck(SignInDto data) throws InvalidJwtException {
