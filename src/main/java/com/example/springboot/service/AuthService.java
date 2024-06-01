@@ -19,12 +19,11 @@ public class AuthService implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String username) {
-    var user = repository.findByLogin(username);
-    return user;
+    return repository.findByUsername(username);
   }
 
   public UserDetails signUp(SignUpDto data) throws InvalidJwtException {
-    if (repository.findByLogin(data.getUsername()) != null) {
+    if (repository.findByUsername(data.getUsername()) != null) {
       throw new InvalidJwtException("Username already exists");
     }
     String encryptedPassword = new BCryptPasswordEncoder().encode(data.getPassword());
@@ -33,7 +32,7 @@ public class AuthService implements UserDetailsService {
   }
 
   public void signinCheck(SignInDto data) throws InvalidJwtException {
-    if (repository.findByLogin(data.getUsername()) == null) {
+    if (repository.findByUsername(data.getUsername()) == null) {
       throw new InvalidJwtException("Username doesn't exists");
     }
   }

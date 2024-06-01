@@ -23,7 +23,7 @@ public class TestConfig {
   private void signUp() throws Exception {
     String signupRequest = """
         {
-          "login": "myusername",
+          "username": "myusername",
           "password": "123456",
           "role": "ADMIN"
         }
@@ -37,7 +37,7 @@ public class TestConfig {
   private String signIn() throws Exception {
     String signinRequest = """
         {
-          "login": "myusername",
+          "username": "myusername",
           "password": "123456"
         }
         """;
