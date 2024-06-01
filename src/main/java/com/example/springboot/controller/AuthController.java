@@ -1,7 +1,7 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.config.TokenProvider;
-import com.example.springboot.dao.User;
+import com.example.springboot.dao.UserEntity;
 import com.example.springboot.dto.JwtDto;
 import com.example.springboot.dto.SignInDto;
 import com.example.springboot.dto.SignUpDto;
@@ -66,7 +66,7 @@ public class AuthController {
     UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(data.getUsername(),
         data.getPassword());
     Authentication authUser = authenticationManager.authenticate(usernamePassword);
-    String accessToken = tokenService.generateAccessToken((User) authUser.getPrincipal());
+    String accessToken = tokenService.generateAccessToken((UserEntity) authUser.getPrincipal());
     return ResponseEntity.ok(new JwtDto(accessToken));
   }
 }
