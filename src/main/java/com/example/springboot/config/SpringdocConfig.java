@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @SecurityScheme(
     type = SecuritySchemeType.HTTP,
-    name = "JWT token",
+    name = "JWT",
     scheme = "bearer")
 public class SpringdocConfig {
 

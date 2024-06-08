@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("cdr")
 @RequiredArgsConstructor
-@SecurityRequirement(name = "JWT token")
+@SecurityRequirement(name = "JWT")
 public class CdrController {
 
   private final CdrService cdrService;
