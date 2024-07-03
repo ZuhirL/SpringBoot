@@ -2,12 +2,13 @@ version: '3.7'
 
 services:
   java-app:
+    image: imagename
     build: .
     container_name: java-app
     ports:
       - "8080:8080"
-    env_file:
-      - .env
+    secrets:
+      - JWT_SECRET
 
   prometheus:
     image: prom/prometheus:v2.44.0
@@ -25,3 +26,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./datasources:/etc/grafana/provisioning/datasources
+
+secrets:
+  JWT_SECRET:
+    external: true
